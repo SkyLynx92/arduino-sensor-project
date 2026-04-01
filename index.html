@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tropical Sensor Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <h1>Tropical Sensor Dashboard</h1>
+        <p>Live temperature (°C) and humidity (%) readings from <code>sensor_data</code>.</p>
+      </header>
+
+      <section class="controls card">
+        <h2>Connection</h2>
+        <label for="supabase-url">Supabase URL</label>
+        <input id="supabase-url" type="url" placeholder="https://your-project.supabase.co" />
+
+        <label for="supabase-anon-key">Supabase Anon Key</label>
+        <input id="supabase-anon-key" type="password" placeholder="Paste your anon key" />
+
+        <div class="actions">
+          <button id="connect-btn">Connect</button>
+          <button id="refresh-btn" class="secondary">Refresh</button>
+        </div>
+        <p id="status" aria-live="polite">Enter your credentials to connect.</p>
+      </section>
+
+      <section class="metrics-grid">
+        <article class="metric card">
+          <h3>Temperature</h3>
+          <p class="metric-value"><span id="temp-value">--</span> <span class="unit">°C</span></p>
+          <p id="temp-time" class="meta">Awaiting data…</p>
+        </article>
+
+        <article class="metric card">
+          <h3>Humidity</h3>
+          <p class="metric-value"><span id="humidity-value">--</span> <span class="unit">%</span></p>
+          <p id="humidity-time" class="meta">Awaiting data…</p>
+        </article>
+      </section>
+
+      <section class="card chart-card">
+        <h2>Temperature and Humidity Trend</h2>
+        <canvas id="readings-chart" height="120"></canvas>
+      </section>
+    </main>
+  </body>
+</html>
