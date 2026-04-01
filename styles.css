@@ -1,0 +1,138 @@
+:root {
+  --bg-top: #0a3d62;
+  --bg-bottom: #16a085;
+  --card-bg: rgba(255, 255, 255, 0.16);
+  --card-border: rgba(255, 255, 255, 0.25);
+  --text-main: #f5fff8;
+  --text-muted: #daf2e4;
+  --accent: #ffbe0b;
+  --accent-2: #fb5607;
+  --ok: #80ed99;
+  --danger: #ff8fab;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--text-main);
+  background: linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+  min-height: 100vh;
+}
+
+.page-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.2rem 1rem 1.6rem;
+}
+
+.hero h1 {
+  margin: 0 0 0.2rem;
+  font-size: clamp(1.5rem, 2.3vw, 2.1rem);
+}
+
+.hero p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.card {
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 0.85rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.controls {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
+.controls input {
+  width: 100%;
+}
+
+.poll-row {
+  margin-top: 0.25rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.metric-value {
+  font-size: 1.8rem;
+  margin: 0.1rem 0;
+}
+
+.unit {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.meta {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.alert-card {
+  margin-top: 0.75rem;
+}
+
+.threshold-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.65rem;
+}
+
+.alert-status {
+  margin: 0.65rem 0 0;
+  color: var(--ok);
+  font-weight: 600;
+}
+
+.alert-status.danger {
+  color: var(--danger);
+}
+
+.chart-card {
+  margin-top: 0.75rem;
+  min-height: 260px;
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  margin-bottom: 0.4rem;
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.55rem 0.95rem;
+  cursor: pointer;
+  font-weight: 600;
+  background: var(--accent);
+  color: #1d2a35;
+}
+
+button.secondary {
+  background: var(--accent-2);
+  color: #fff8f2;
+}
+
+#status {
+  margin: 0.2rem 0 0;
+  color: var(--ok);
+}

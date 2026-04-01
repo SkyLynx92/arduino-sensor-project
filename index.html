@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tropical Sensor Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <h1>Tropical Sensor Dashboard</h1>
+        <p>Live temperature (°C) and humidity (%) readings from <code>sensor_data</code>.</p>
+      </header>
+
+      <section class="controls card">
+        <h2>Live Update Controls</h2>
+        <div class="poll-row">
+          <label for="poll-seconds">Auto-refresh every <span id="poll-value">10</span>s</label>
+          <input id="poll-seconds" type="range" min="5" max="60" value="10" />
+        </div>
+        <p id="status" aria-live="polite">Starting continuous updates…</p>
+      </section>
+
+      <section class="metrics-grid">
+        <article class="metric card">
+          <h3>Temperature</h3>
+          <p class="metric-value"><span id="temp-value">--</span> <span class="unit">°C</span></p>
+          <p id="temp-time" class="meta">Awaiting data…</p>
+        </article>
+
+        <article class="metric card">
+          <h3>Humidity</h3>
+          <p class="metric-value"><span id="humidity-value">--</span> <span class="unit">%</span></p>
+          <p id="humidity-time" class="meta">Awaiting data…</p>
+        </article>
+      </section>
+
+      <section class="card alert-card">
+        <h2>Alert Thresholds</h2>
+        <div class="threshold-grid">
+          <div>
+            <label for="temp-threshold">Temperature alert above: <span id="temp-threshold-value">35</span>°C</label>
+            <input id="temp-threshold" type="range" min="20" max="60" value="35" />
+          </div>
+          <div>
+            <label for="humidity-threshold">Humidity alert above: <span id="humidity-threshold-value">80</span>%</label>
+            <input id="humidity-threshold" type="range" min="30" max="100" value="80" />
+          </div>
+        </div>
+        <p id="alert-status" class="alert-status">No active alerts.</p>
+      </section>
+
+      <section class="card chart-card">
+        <div class="chart-header">
+          <h2>Temperature and Humidity Trend</h2>
+          <button id="refresh-btn" class="secondary">Manual Refresh</button>
+        </div>
+        <canvas id="readings-chart" height="96"></canvas>
+      </section>
+    </main>
+  </body>
+</html>
