@@ -28,7 +28,7 @@ create table sensor_data (
 - Supabase project URL and anon key are already configured in `app.js`.
 - Continuous auto-refresh polling (5s to 60s slider)
 - Threshold sliders for temperature and humidity alerts
-- In-page alert banner + optional browser notification when thresholds are crossed
+- In-page alert banner + optional browser notification when thresholds are crossed (with notification cooldown)
 - Manual refresh button is above the graph
 - Medium-sized chart tuned for single-page viewing
 

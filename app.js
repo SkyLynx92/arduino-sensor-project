@@ -36,6 +36,8 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_
 let chart = null;
 let pollIntervalId = null;
 let latestReading = null;
+let lastAlertSignature = "";
+let lastAlertAt = 0;
 
 function setStatus(message, isError = false) {
   els.status.textContent = message;
@@ -210,13 +212,22 @@ function evaluateAlerts() {
   if (!alerts.length) {
     els.alertStatus.textContent = "No active alerts.";
     els.alertStatus.classList.remove("danger");
+    lastAlertSignature = "";
     return;
   }
 
   const message = alerts.join(" | ");
   els.alertStatus.textContent = `Alert: ${message}`;
   els.alertStatus.classList.add("danger");
-  pushBrowserAlert(message);
+
+  const signature = `${Math.round(temp)}-${Math.round(humidity)}-${tempThreshold}-${humidityThreshold}`;
+  const now = Date.now();
+  const minIntervalMs = 60000;
+  if (signature !== lastAlertSignature || now - lastAlertAt > minIntervalMs) {
+    pushBrowserAlert(message);
+    lastAlertSignature = signature;
+    lastAlertAt = now;
+  }
 }
 
 function startPolling() {
